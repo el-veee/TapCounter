@@ -1,4 +1,4 @@
-package com.lachlanvass.tapcounter.presentation.components.counterscreen
+package com.lachlanvass.tapcounter.presentation.screens.counterscreen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,7 +37,9 @@ fun CounterScreen(
         color = MaterialTheme.colors.background
     ) {
 
-        Column() {
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
 
             repeat(numberOfOnScreenCounters.numberOfCounters) {
                 Counter()
@@ -67,5 +69,14 @@ fun CounterScreenPreview() {
 
     CounterScreen(
         numberOfOnScreenCounters = NumberOfCountersOptions.ONE_COUNTER,
+        navHostController = rememberNavController())
+}
+
+@Composable
+@Preview(showBackground = true)
+fun TwoCounterScreenPreview() {
+
+    CounterScreen(
+        numberOfOnScreenCounters = NumberOfCountersOptions.TWO_COUNTER,
         navHostController = rememberNavController())
 }
