@@ -1,4 +1,4 @@
-package com.lachlanvass.tapcounter.presentation.components.counterscreen
+package com.lachlanvass.tapcounter.presentation.screens.counterscreen
 
 enum class CounterNavStringOption(val message: String) {
 
