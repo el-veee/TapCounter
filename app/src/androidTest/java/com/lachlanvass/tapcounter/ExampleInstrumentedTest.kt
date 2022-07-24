@@ -1,5 +1,6 @@
 package com.lachlanvass.tapcounter
 
+import androidx.test.espresso.Espresso.onView
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TapCounter</string>
+    <string name="counterNavigationTitle">Number of Counters</string>
+    <string name="title_activity_two_counters">TwoCountersActivity</string>
 </resources>

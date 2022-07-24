@@ -2,6 +2,7 @@ package com.lachlanvass.tapcounter.presentation.components.counter
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +26,7 @@ fun AddSubtractButton(
 
         Text(
             text = countOperator.operator,
-            fontSize = 16.sp
+            fontSize = MaterialTheme.typography.button.fontSize
         )
     }
 

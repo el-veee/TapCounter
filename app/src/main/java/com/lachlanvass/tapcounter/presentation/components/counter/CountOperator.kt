@@ -6,6 +6,4 @@ sealed class CountOperator(val operator: String) {
     object Subtract: CountOperator("-")
     object Reset: CountOperator("Reset")
 
-//    val ADD = "+"
-//    val SUBTRACT = "-"
 }
