@@ -25,13 +25,12 @@ fun Counter() {
         modifier = Modifier.fillMaxWidth()
     ) {
 
-        // Counter Name
         TextField(
             value = counterName,
             onValueChange = { counterName = it },
             label = {
-                Text("Thing1")
-            }
+                Text("What are you counting?")
+            },
         )
 
         // Counter Value Display
@@ -41,7 +40,12 @@ fun Counter() {
                 .fillMaxWidth()
         ) {
 
-            TextField(value = count.toString(), onValueChange = { count = it.toInt() })
+            TextField(
+                value = count.toString(),
+                onValueChange = { count = it.toInt() },
+                readOnly = true
+
+            )
         }
 
         // Subtract and Add Buttons
