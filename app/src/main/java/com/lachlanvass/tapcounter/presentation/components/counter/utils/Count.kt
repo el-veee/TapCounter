@@ -1,26 +1,24 @@
 package com.lachlanvass.tapcounter.presentation.components.counter.utils
 
-class Count(var count: Int): CounterInterface {
-    override fun increment() {
-        count++
-    }
+import com.lachlanvass.tapcounter.presentation.components.counter.utils.Count.Companion.increment
 
-    override fun decrement() {
+class Count(var count: Int) {
 
-        // Do not allow count to be lower than zero
-        if (count == 0) {
-            return
+    companion object {
+        fun reset() = 0
+        fun Int.increment(): Int = this.inc()
+        fun Int.decrement(): Int {
+            if (this == 0) {
+
+                return 0
+            }
+
+            return this.dec()
         }
-
-        count--
     }
-
-    override fun reset() {
-        count = 0
-    }
-
-    override fun toString(): String {
-        return count.toString()
-    }
-
 }
+
+fun reset() = 0
+
+val x = Count(10)
+val a = x.count.increment()
