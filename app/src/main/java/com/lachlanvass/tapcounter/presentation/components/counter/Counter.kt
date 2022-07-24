@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.lachlanvass.tapcounter.presentation.components.counter.utils.Count
 
 @Composable
 fun Counter() {
@@ -15,8 +16,8 @@ fun Counter() {
         mutableStateOf("")
     }
 
-    var count by remember {
-        mutableStateOf(0)
+    var counter by remember {
+        mutableStateOf(Count(0).count)
     }
 
     Column(
@@ -41,8 +42,8 @@ fun Counter() {
         ) {
 
             TextField(
-                value = count.toString(),
-                onValueChange = { count = it.toInt() },
+                value = counter.toString(),
+                onValueChange = { counter = it.toInt() },
                 readOnly = true
 
             )
@@ -52,9 +53,9 @@ fun Counter() {
 
         Row {
 
-            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { count-- })
-            AddSubtractButton(countOperator = CountOperator.Add, fun() { count++ })
-            AddSubtractButton(countOperator = CountOperator.Reset, fun() { count = 0 })
+            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { counter.decrement() })
+            AddSubtractButton(countOperator = CountOperator.Add, fun() { counter.increment() })
+            AddSubtractButton(countOperator = CountOperator.Reset, fun() { counter.reset() })
 
         }
 
