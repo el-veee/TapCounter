@@ -7,7 +7,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.lachlanvass.tapcounter.presentation.components.counter.utils.Count
+import com.lachlanvass.tapcounter.presentation.components.counter.utils.CountManager
+import com.lachlanvass.tapcounter.presentation.components.counter.utils.PositiveCountManager
 
 @Composable
 fun Counter() {
@@ -16,8 +17,12 @@ fun Counter() {
         mutableStateOf("")
     }
 
+    val countManager = PositiveCountManager()
     var counter by remember {
-        mutableStateOf(Count(0).count)
+
+        mutableStateOf(
+            0
+        )
     }
 
     Column(
@@ -53,9 +58,9 @@ fun Counter() {
 
         Row {
 
-            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { counter.decrement() })
-            AddSubtractButton(countOperator = CountOperator.Add, fun() { counter.increment() })
-            AddSubtractButton(countOperator = CountOperator.Reset, fun() { counter.reset() })
+            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { countManager.decrement() })
+            AddSubtractButton(countOperator = CountOperator.Add, fun() { counter.inc() })
+            AddSubtractButton(countOperator = CountOperator.Reset, fun() { countManager.reset()})
 
         }
 
