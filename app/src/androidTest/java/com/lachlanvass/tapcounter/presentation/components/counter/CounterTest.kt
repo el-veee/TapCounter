@@ -103,4 +103,46 @@ class CounterTest {
             .onNode(hasTestTag(CounterTestTag.CountValue.tag))
             .assert(hasText("0"))
     }
+
+    @Test
+    fun testResetFrom10() {
+
+        composeTestRule.setContent {
+            Counter()
+        }
+
+        repeat(10) {
+
+            composeTestRule
+                .onNode(hasTestTag(CounterTestTag.PlusButton.tag))
+                .performClick()
+        }
+
+        composeTestRule
+            .onNode(hasTestTag(CounterTestTag.ResetButton.tag))
+            .performClick()
+
+        composeTestRule
+            .onNode(hasTestTag(CounterTestTag.CountValue.tag))
+            .assert(hasText("0"))
+
+    }
+
+    @Test
+    fun testResetFrom0() {
+
+        composeTestRule.setContent {
+            Counter()
+        }
+
+
+        composeTestRule
+            .onNode(hasTestTag(CounterTestTag.ResetButton.tag))
+            .performClick()
+
+        composeTestRule
+            .onNode(hasTestTag(CounterTestTag.CountValue.tag))
+            .assert(hasText("0"))
+
+    }
 }
