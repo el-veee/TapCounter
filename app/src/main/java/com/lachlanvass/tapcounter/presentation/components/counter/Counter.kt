@@ -6,6 +6,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -43,7 +44,9 @@ fun Counter() {
             TextField(
                 value = count.toString(),
                 onValueChange = { count = it.toInt() },
-                readOnly = true
+                readOnly = true,
+                modifier = Modifier
+                    .testTag(CounterTestTag.CountValue.tag)
 
             )
         }
@@ -52,9 +55,23 @@ fun Counter() {
 
         Row {
 
-            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { count-- })
-            AddSubtractButton(countOperator = CountOperator.Add, fun() { count++ })
-            AddSubtractButton(countOperator = CountOperator.Reset, fun() { count = 0 })
+            AddSubtractButton(
+                countOperator = CountOperator.Subtract,
+                fun() { count = count.decrementNotNegative() },
+                Modifier.testTag(CounterTestTag.SubtractButton.tag)
+            )
+
+            AddSubtractButton(
+                countOperator = CountOperator.Add,
+                fun() { count = count.inc() },
+                Modifier.testTag(CounterTestTag.PlusButton.tag)
+            )
+
+            AddSubtractButton(
+                countOperator = CountOperator.Reset,
+                fun() { count = reset() },
+                Modifier.testTag(CounterTestTag.ResetButton.tag)
+            )
 
         }
 
