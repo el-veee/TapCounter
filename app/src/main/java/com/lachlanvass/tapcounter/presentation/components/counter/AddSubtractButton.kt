@@ -6,6 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -14,13 +15,15 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun AddSubtractButton(
     countOperator: CountOperator,
-    clickAction: () -> Unit
+    clickAction: () -> Unit,
+    modifier: Modifier
 ) {
 
     OutlinedButton(
         onClick = clickAction,
         shape = CircleShape,
-        border = BorderStroke(1.dp, Color.Black)
+        border = BorderStroke(1.dp, Color.Black),
+        modifier = modifier
 
     ) {
 
@@ -37,7 +40,7 @@ fun AddSubtractButton(
 fun SubtractButtonPreview() {
 
     val emptyFun = fun() {}
-    AddSubtractButton(CountOperator.Subtract, emptyFun)
+    AddSubtractButton(CountOperator.Subtract, emptyFun, Modifier)
 
 }
 
@@ -46,7 +49,7 @@ fun SubtractButtonPreview() {
 fun AddButtonPreview() {
 
     val emptyFun = fun() {}
-    AddSubtractButton(CountOperator.Add, emptyFun)
+    AddSubtractButton(CountOperator.Add, emptyFun, Modifier)
 
 }
 
@@ -55,6 +58,6 @@ fun AddButtonPreview() {
 fun ResetButtonPreview() {
 
     val emptyFun = fun() {}
-    AddSubtractButton(CountOperator.Reset, emptyFun)
+    AddSubtractButton(CountOperator.Reset, emptyFun, Modifier)
 
 }
