@@ -27,4 +27,32 @@ class CounterTest {
             .onNode(hasTestTag(CounterTestTag.CountValue.tag))
             .assert(hasText("1"))
     }
+
+    @Test
+    fun testIncrementsCountUp100() {
+
+        composeTestRule.setContent {
+            Counter()
+        }
+
+        composeTestRule.onRoot().printToLog("COUNTERTEST")
+
+        val plusButton = composeTestRule
+            .onNode(
+                hasTestTag(
+                    CounterTestTag
+                        .PlusButton
+                        .tag
+                )
+            )
+
+        repeat(100) {
+            plusButton.performClick()
+        }
+
+
+        composeTestRule
+            .onNode(hasTestTag(CounterTestTag.CountValue.tag))
+            .assert(hasText("100"))
+    }
 }
