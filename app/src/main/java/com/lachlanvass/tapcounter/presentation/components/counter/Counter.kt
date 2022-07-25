@@ -21,7 +21,7 @@ fun Counter() {
     var counter by remember {
 
         mutableStateOf(
-            0
+            countManager.count
         )
     }
 
@@ -58,9 +58,9 @@ fun Counter() {
 
         Row {
 
-            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { countManager.decrement() })
-            AddSubtractButton(countOperator = CountOperator.Add, fun() { counter.inc() })
-            AddSubtractButton(countOperator = CountOperator.Reset, fun() { countManager.reset()})
+            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { counter = countManager.decrement() })
+            AddSubtractButton(countOperator = CountOperator.Add, fun() { counter = countManager.increment() })
+            AddSubtractButton(countOperator = CountOperator.Reset, fun() { counter = countManager.reset()})
 
         }
 
