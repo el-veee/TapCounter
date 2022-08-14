@@ -10,14 +10,16 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun Counter() {
+fun Counter(
+    counterValue: Int
+) {
 
     var counterName by remember {
         mutableStateOf("")
     }
 
     var count by remember {
-        mutableStateOf(0)
+        mutableStateOf(counterValue)
     }
 
     Column(
@@ -83,5 +85,5 @@ fun Counter() {
 @Composable
 fun CounterPreview() {
 
-    Counter()
+    Counter(10)
 }

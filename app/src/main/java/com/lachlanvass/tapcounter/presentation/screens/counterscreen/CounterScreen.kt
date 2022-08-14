@@ -13,13 +13,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.lachlanvass.tapcounter.MainViewModel
 import com.lachlanvass.tapcounter.Screen
 import com.lachlanvass.tapcounter.presentation.components.counter.Counter
 
 @Composable
 fun CounterScreen(
     numberOfOnScreenCounters: NumberOfCountersOptions,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    mainViewModel: MainViewModel
 ) {
 
     val navRoute = when(numberOfOnScreenCounters) {
@@ -42,8 +44,14 @@ fun CounterScreen(
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
 
-            repeat(numberOfOnScreenCounters.numberOfCounters) {
-                Counter()
+            Counter(
+                mainViewModel.counterOneValue
+            )
+
+            if (numberOfOnScreenCounters.numberOfCounters == 2) {
+                Counter(
+                    mainViewModel.counterTwoValue
+                )
             }
 
             Button(onClick = {
@@ -64,20 +72,20 @@ fun CounterScreen(
 
 }
 
-@Composable
-@Preview(showBackground = true)
-fun CounterScreenPreview() {
-
-    CounterScreen(
-        numberOfOnScreenCounters = NumberOfCountersOptions.ONE_COUNTER,
-        navHostController = rememberNavController())
-}
-
-@Composable
-@Preview(showBackground = true)
-fun TwoCounterScreenPreview() {
-
-    CounterScreen(
-        numberOfOnScreenCounters = NumberOfCountersOptions.TWO_COUNTER,
-        navHostController = rememberNavController())
-}
+//@Composable
+//@Preview(showBackground = true)
+//fun CounterScreenPreview() {
+//
+//    CounterScreen(
+//        numberOfOnScreenCounters = NumberOfCountersOptions.ONE_COUNTER,
+//        navHostController = rememberNavController())
+//}
+//
+//@Composable
+//@Preview(showBackground = true)
+//fun TwoCounterScreenPreview() {
+//
+//    CounterScreen(
+//        numberOfOnScreenCounters = NumberOfCountersOptions.TWO_COUNTER,
+//        navHostController = rememberNavController())
+//}
