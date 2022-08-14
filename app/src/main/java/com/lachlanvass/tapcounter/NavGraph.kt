@@ -9,7 +9,8 @@ import com.lachlanvass.tapcounter.presentation.screens.counterscreen.NumberOfCou
 
 @Composable
 fun SetupNavGraph(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    viewModel: CounterScreenViewModel
 ) {
 
     NavHost(
@@ -22,7 +23,8 @@ fun SetupNavGraph(
         ) {
             CounterScreen(
                 numberOfOnScreenCounters = NumberOfCountersOptions.ONE_COUNTER,
-                navHostController = navHostController
+                navHostController = navHostController,
+                viewModel
             )
         }
 
@@ -31,7 +33,9 @@ fun SetupNavGraph(
         ) {
             CounterScreen(
                 numberOfOnScreenCounters = NumberOfCountersOptions.TWO_COUNTER,
-                navHostController = navHostController)
+                navHostController = navHostController,
+                viewModel
+                )
         }
     }
 }

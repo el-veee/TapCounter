@@ -10,16 +10,16 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import com.lachlanvass.tapcounter.CounterScreenViewModel
 import com.lachlanvass.tapcounter.Screen
 import com.lachlanvass.tapcounter.presentation.components.counter.Counter
 
 @Composable
 fun CounterScreen(
     numberOfOnScreenCounters: NumberOfCountersOptions,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    counterScreenViewModel: CounterScreenViewModel
 ) {
 
     val navRoute = when(numberOfOnScreenCounters) {
@@ -42,8 +42,20 @@ fun CounterScreen(
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
 
-            repeat(numberOfOnScreenCounters.numberOfCounters) {
-                Counter()
+            Counter(
+                counterScreenViewModel.counterOneValue,
+                { counterScreenViewModel.incrementCounterOne() },
+                { counterScreenViewModel.decrementCounterOne() },
+                { counterScreenViewModel.resetCounterOne() }
+            )
+
+            if (numberOfOnScreenCounters.numberOfCounters == 2) {
+                Counter(
+                    counterScreenViewModel.counterTwoValue,
+                    { counterScreenViewModel.incrementCounterTwo() },
+                    { counterScreenViewModel.decrementCounterTwo() },
+                    { counterScreenViewModel.resetCounterTwo() }
+                )
             }
 
             Button(onClick = {
@@ -64,20 +76,20 @@ fun CounterScreen(
 
 }
 
-@Composable
-@Preview(showBackground = true)
-fun CounterScreenPreview() {
-
-    CounterScreen(
-        numberOfOnScreenCounters = NumberOfCountersOptions.ONE_COUNTER,
-        navHostController = rememberNavController())
-}
-
-@Composable
-@Preview(showBackground = true)
-fun TwoCounterScreenPreview() {
-
-    CounterScreen(
-        numberOfOnScreenCounters = NumberOfCountersOptions.TWO_COUNTER,
-        navHostController = rememberNavController())
-}
+//@Composable
+//@Preview(showBackground = true)
+//fun CounterScreenPreview() {
+//
+//    CounterScreen(
+//        numberOfOnScreenCounters = NumberOfCountersOptions.ONE_COUNTER,
+//        navHostController = rememberNavController())
+//}
+//
+//@Composable
+//@Preview(showBackground = true)
+//fun TwoCounterScreenPreview() {
+//
+//    CounterScreen(
+//        numberOfOnScreenCounters = NumberOfCountersOptions.TWO_COUNTER,
+//        navHostController = rememberNavController())
+//}

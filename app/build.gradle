@@ -72,6 +72,13 @@ dependencies {
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
+    // UI Automator (e.g. screen rotation tests)
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
+
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // Viewmodel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
 }

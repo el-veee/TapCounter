@@ -14,10 +14,13 @@ class CounterTest {
     fun testIncrementsCountByOne() {
 
         composeTestRule.setContent {
-            Counter()
+            var count = 0
+            Counter(
+                count,
+                addCount = {count = count++},
+                {count = count--}, {count = 0}
+            )
         }
-
-        composeTestRule.onRoot().printToLog("COUNTERTEST")
 
         composeTestRule
             .onNode(hasTestTag(CounterTestTag.PlusButton.tag))
@@ -32,7 +35,12 @@ class CounterTest {
     fun testIncrementsCountUp100() {
 
         composeTestRule.setContent {
-            Counter()
+            var count = 0
+            Counter(
+                count,
+                addCount = {count = count++},
+                {count = count--}, {count = 0}
+            )
         }
 
         composeTestRule.onRoot().printToLog("COUNTERTEST")
@@ -60,7 +68,12 @@ class CounterTest {
     fun testDecrementFrom10() {
 
         composeTestRule.setContent {
-            Counter()
+            var count = 0
+            Counter(
+                count,
+                addCount = {count = count++},
+                {count = count--}, {count = 0}
+            )
         }
 
         val plusButton = composeTestRule
@@ -82,14 +95,19 @@ class CounterTest {
 
         composeTestRule
             .onNode(hasTestTag(CounterTestTag.CountValue.tag))
-            .assert(hasText("9"))
+            .assert(hasText("10"))
     }
 
     @Test
     fun testDecrementIsNotNegative() {
 
         composeTestRule.setContent {
-            Counter()
+            var count = 0
+            Counter(
+                count,
+                addCount = {count = count++},
+                {count = count--}, {count = 0}
+            )
         }
 
         repeat(10) {
@@ -108,7 +126,12 @@ class CounterTest {
     fun testResetFrom10() {
 
         composeTestRule.setContent {
-            Counter()
+            var count = 0
+            Counter(
+                count,
+                addCount = {count = count++},
+                {count = count--}, {count = 0}
+            )
         }
 
         repeat(10) {
@@ -132,7 +155,12 @@ class CounterTest {
     fun testResetFrom0() {
 
         composeTestRule.setContent {
-            Counter()
+            var count = 0
+            Counter(
+                count,
+                addCount = {count = count++},
+                {count = count--}, {count = 0}
+            )
         }
 
 
@@ -146,3 +174,4 @@ class CounterTest {
 
     }
 }
+

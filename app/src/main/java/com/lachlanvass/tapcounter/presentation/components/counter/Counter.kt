@@ -10,14 +10,19 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun Counter() {
+fun Counter(
+    counterValue: Int,
+    addCount: () -> Unit,
+    subCount: () -> Unit,
+    resetCount: () -> Unit
+) {
 
     var counterName by remember {
         mutableStateOf("")
     }
 
     var count by remember {
-        mutableStateOf(0)
+        mutableStateOf(counterValue)
     }
 
     Column(
@@ -42,7 +47,7 @@ fun Counter() {
         ) {
 
             TextField(
-                value = count.toString(),
+                value = counterValue.toString(),
                 onValueChange = { count = it.toInt() },
                 readOnly = true,
                 modifier = Modifier
@@ -57,19 +62,19 @@ fun Counter() {
 
             AddSubtractButton(
                 countOperator = CountOperator.Subtract,
-                fun() { count = count.decrementNotNegative() },
+                subCount,
                 Modifier.testTag(CounterTestTag.SubtractButton.tag)
             )
 
             AddSubtractButton(
                 countOperator = CountOperator.Add,
-                fun() { count = count.inc() },
+                addCount,
                 Modifier.testTag(CounterTestTag.PlusButton.tag)
             )
 
             AddSubtractButton(
                 countOperator = CountOperator.Reset,
-                fun() { count = reset() },
+                resetCount,
                 Modifier.testTag(CounterTestTag.ResetButton.tag)
             )
 
@@ -83,5 +88,10 @@ fun Counter() {
 @Composable
 fun CounterPreview() {
 
-    Counter()
+    var counterValue = 10
+    Counter(10,
+        { counterValue = counterValue.inc() },
+        { counterValue = counterValue.dec() },
+        { counterValue = 0 }
+    )
 }
