@@ -3,7 +3,6 @@ package com.lachlanvass.tapcounter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -17,7 +16,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
 
-        var viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val viewModel = ViewModelProvider(this)
+            .get(CounterScreenViewModel::class.java)
 
         setContent {
             TapCounterTheme {
@@ -26,8 +26,7 @@ class MainActivity : ComponentActivity() {
                 SetupNavGraph(
                     navHostController = navController,
                     viewModel
-
-                    )
+                )
 
             }
         }

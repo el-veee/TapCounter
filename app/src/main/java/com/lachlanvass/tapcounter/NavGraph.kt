@@ -10,7 +10,7 @@ import com.lachlanvass.tapcounter.presentation.screens.counterscreen.NumberOfCou
 @Composable
 fun SetupNavGraph(
     navHostController: NavHostController,
-    viewModel: MainViewModel
+    viewModel: CounterScreenViewModel
 ) {
 
     NavHost(

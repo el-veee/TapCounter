@@ -10,10 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.lachlanvass.tapcounter.MainViewModel
+import com.lachlanvass.tapcounter.CounterScreenViewModel
 import com.lachlanvass.tapcounter.Screen
 import com.lachlanvass.tapcounter.presentation.components.counter.Counter
 
@@ -21,7 +19,7 @@ import com.lachlanvass.tapcounter.presentation.components.counter.Counter
 fun CounterScreen(
     numberOfOnScreenCounters: NumberOfCountersOptions,
     navHostController: NavHostController,
-    mainViewModel: MainViewModel
+    counterScreenViewModel: CounterScreenViewModel
 ) {
 
     val navRoute = when(numberOfOnScreenCounters) {
@@ -45,12 +43,18 @@ fun CounterScreen(
         ) {
 
             Counter(
-                mainViewModel.counterOneValue
+                counterScreenViewModel.counterOneValue,
+                { counterScreenViewModel.incrementCounterOne() },
+                { counterScreenViewModel.decrementCounterOne() },
+                { counterScreenViewModel.resetCounterOne() }
             )
 
             if (numberOfOnScreenCounters.numberOfCounters == 2) {
                 Counter(
-                    mainViewModel.counterTwoValue
+                    counterScreenViewModel.counterTwoValue,
+                    { counterScreenViewModel.incrementCounterTwo() },
+                    { counterScreenViewModel.decrementCounterTwo() },
+                    { counterScreenViewModel.resetCounterTwo() }
                 )
             }
 
